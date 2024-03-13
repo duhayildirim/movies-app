@@ -1,11 +1,14 @@
-import React from 'react'
+import React from "react";
 
-function index() {
+import Movies from "@/mocks/movies.json";
+import FeaturedMovie from "@/components/featured-movie";
+
+function HomeContainer() {
   return (
     <div>
-      Home
+      <FeaturedMovie movie={Movies.results[0]} />
     </div>
-  )
+  );
 }
 
-export default index
+export default HomeContainer;
