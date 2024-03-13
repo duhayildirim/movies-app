@@ -1,11 +1,17 @@
-import React from 'react'
+import React from "react";
+import Link from "next/link";
 
-function index() {
+import styles from "./styles.module.css";
+
+function Footer() {
   return (
-    <h1>
-      Footer
-    </h1>
-  )
+    <footer className={styles.footer}>
+      Made with ❤️ by&nbsp;
+      <Link href="https://github.com/duhayildirim" target="_blank">
+        Duha Yildirim
+      </Link>
+    </footer>
+  );
 }
 
-export default index
+export default Footer ;
