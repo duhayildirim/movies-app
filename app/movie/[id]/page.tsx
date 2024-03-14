@@ -32,7 +32,7 @@ interface MoviesResponse {
 const Movies: MoviesResponse = MoviesData;
 
 function MoviePage({ params, searchParams }: { params: Params }) {
-  console.log(searchParams);
+
   const movieDetail = Movies.results.find(
     (movie) => movie.id.toString() === params.id
   );

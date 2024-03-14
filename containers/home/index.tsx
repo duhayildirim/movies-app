@@ -40,13 +40,29 @@ interface MoviesResponse {
 const Movies: MoviesResponse = MoviesData;
 const Genres: GenresResponse = GenresData;
 
-function HomeContainer() {
+function HomeContainer({ selectedCategory }) {
   return (
     <div>
       <FeaturedMovie movie={Movies.results[0]} />
       <Categories categories={Genres.genres.slice(0, 5)} />
-      <MoviesSection title="Popular Films" movies={Movies.results.slice(1, 7)} />
-      <MoviesSection title="Your Favorites" movies={Movies.results.slice(7, 13)} />
+      {selectedCategory.movies.length > 0 && (
+        <MoviesSection
+          title={
+            Genres.genres.find(
+              (genre) => genre.id.toString() === selectedCategory.id
+            )?.name
+          }
+          movies={selectedCategory.movies}
+        />
+      )}
+      <MoviesSection
+        title="Popular Films"
+        movies={Movies.results.slice(1, 7)}
+      />
+      <MoviesSection
+        title="Your Favorites"
+        movies={Movies.results.slice(7, 13)}
+      />
     </div>
   );
 }
