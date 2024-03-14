@@ -1,6 +1,7 @@
-import React from 'react';
-import MoviesData from '@/mocks/movies.json'
-import MovieContainer from '@/containers/movie';
+import React from "react";
+import MoviesData from "@/mocks/movies.json";
+import MovieContainer from "@/containers/movie";
+import { notFound } from "next/navigation";
 
 interface Params {
   id: string;
@@ -30,14 +31,21 @@ interface MoviesResponse {
 
 const Movies: MoviesResponse = MoviesData;
 
-function MoviePage({ params }: { params: Params }) {
-  const movieDetail = Movies.results.find(movie => movie.id.toString() === params.id);
-  
-  return (
-    <MovieContainer movie={movieDetail}/>
+function MoviePage({ params, searchParams }: { params: Params }) {
+  console.log(searchParams);
+  const movieDetail = Movies.results.find(
+    (movie) => movie.id.toString() === params.id
   );
+
+  if (!movieDetail) {
+    notFound();
+  }
+
+  if (searchParams.error === "true") {
+    throw new Error("Error happened");
+  }
+
+  return <MovieContainer movie={movieDetail} />;
 }
 
 export default MoviePage;
-
-
