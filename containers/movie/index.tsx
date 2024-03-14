@@ -7,4 +7,3 @@ function MovieContainer({ movie }) {
 }
 
 export default MovieContainer;
-

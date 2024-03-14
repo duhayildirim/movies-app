@@ -2,7 +2,15 @@ import React from "react";
 import HomeContainer from "@/containers/home";
 import Movies from "@/mocks/movies.json";
 
-function Home({ params }) {
+interface Params {
+  category?: string[];
+}
+
+interface HomeProps {
+  params: Params;
+}
+
+const Home: React.FC<HomeProps> = ({ params }) => {
   let selectedCategory;
 
   if (params.category?.length > 0) {
@@ -20,3 +28,4 @@ function Home({ params }) {
 }
 
 export default Home;
+

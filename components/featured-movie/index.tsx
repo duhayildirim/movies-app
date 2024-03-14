@@ -21,17 +21,16 @@ const FeaturedMovie: React.FC<FeaturedMovieProps> = ({
   movie,
   isCompact = true,
 }) => {
-  const { poster_path, title, overview } = movie;
-
+  console.log(movie);
   return (
     <div className={styles.movieWrapper}>
-      <h1 className={styles.movieTitle}>{title}</h1>
+      <h1 className={styles.movieTitle}>{movie.title}</h1>
       <p
         className={`${styles.overview} ${
           isCompact ? styles.shortOverview : ""
         }`}
       >
-        {overview}
+        {movie.overview}
       </p>
       <div className={styles.actionButtons}>
         <Link className={styles.playButton} href={`/movie/${movie.id}`}>
@@ -45,8 +44,8 @@ const FeaturedMovie: React.FC<FeaturedMovieProps> = ({
         <div className={styles.moviePosterOverlay}></div>
         <Image
           unoptimized
-          src={`https://image.tmdb.org/t/p/original${poster_path}`}
-          alt={title}
+          src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+          alt={movie.title}
           fill
         />
       </div>
