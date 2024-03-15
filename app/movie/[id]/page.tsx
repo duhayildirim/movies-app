@@ -4,7 +4,7 @@ import MovieContainer from "@/containers/movie";
 import { notFound } from "next/navigation";
 
 interface Params {
-  id: string;
+  [key: string]: string;
 }
 
 interface Movie {
@@ -31,8 +31,12 @@ interface MoviesResponse {
 
 const Movies: MoviesResponse = MoviesData;
 
-function MoviePage({ params, searchParams }: { params: Params }) {
+interface MoviePageProps {
+  params: Params;
+  searchParams?: { [key: string]: string };
+}
 
+const MoviePage: React.FC<MoviePageProps> = ({ params, searchParams }) => {
   const movieDetail = Movies.results.find(
     (movie) => movie.id.toString() === params.id
   );
@@ -41,11 +45,11 @@ function MoviePage({ params, searchParams }: { params: Params }) {
     notFound();
   }
 
-  if (searchParams.error === "true") {
+  if (searchParams?.error === "true") {
     throw new Error("Error happened");
   }
 
   return <MovieContainer movie={movieDetail} />;
-}
+};
 
 export default MoviePage;

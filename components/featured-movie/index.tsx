@@ -21,7 +21,7 @@ const FeaturedMovie: React.FC<FeaturedMovieProps> = ({
   movie,
   isCompact = true,
 }) => {
-  console.log(movie);
+
   return (
     <div className={styles.movieWrapper}>
       <h1 className={styles.movieTitle}>{movie.title}</h1>
